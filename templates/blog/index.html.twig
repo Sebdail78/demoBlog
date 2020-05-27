@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{# Le template index.html.twig hérite de notre gabari de base 'base.html.twig' (header + footer + liens CSS etc...) #}
+
+{# démarrer Symfony terminal : php -S 127.0.0.1:8000 -t public #}
+
+{# Le bloc 'title' apparait dans l'onglet du navigateur #}
+{% block title %}Blog Symfony | Liste des articles {% endblock %}
+
+{# le bloc body fait référence au bloque body déclaré dans le fichier base.html.twig #}
+{# Le contenu du bloc 'body' est envoyé dans le bloc body du fichier bas.html.twig #}
+{% block body %}
+
+    <h1 class="display-4 text-center my-4">Liste des articles</h1>
+
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-md-3 border border-secondary rounded mr-5 mb-5 text-center">
+            <img src="https://picsum.photos/250" alt="" class=""><hr>
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-secondary" href="{{ path('blog_show') }}" role="button">View details &raquo;</a></p>
+        </div>
+
+        <div class="col-md-3 border border-secondary rounded mr-5 mb-5 text-center">
+            <img src="https://picsum.photos/250" alt="" class=""><hr>
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-secondary" href="{{ path('blog_show') }}" role="button">View details &raquo;</a></p>
+        </div>
+
+        <div class="col-md-3 border border-secondary rounded mr-5 mb-5 text-center">
+            <img src="https://picsum.photos/250" alt="" class=""><hr>
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-secondary" href="{{ path('blog_show') }}" role="button">View details &raquo;</a></p>
+        </div>
+
+        <div class="col-md-3 border border-secondary rounded mr-5 mb-5 text-center">
+            <img src="https://picsum.photos/250" alt="" class=""><hr>
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-secondary" href="{{ path('blog_show') }}" role="button">View details &raquo;</a></p>
+        </div>
+
+    </div>
+
+{% endblock %}
