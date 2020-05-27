@@ -14,34 +14,28 @@
 
     <div class="row d-flex justify-content-center">
 
-        <div class="col-md-3 border border-secondary rounded mr-5 mb-5 text-center">
-            <img src="https://picsum.photos/250" alt="" class=""><hr>
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="{{ path('blog_show') }}" role="button">View details &raquo;</a></p>
-        </div>
+        {# for est une boucle TWIG, une commande TWIG #}
+        {# la variable 'articles' provient de la méthode index() du controller 'BlogController', elle contient tous les articles selectionnés en BDD#}
+        {# Nous sommes obligé de boucler puisque nous avons selectionnés 10 articles en BDD #}
+        {# newArticle est une variable de réception que nous déclarons dans la boucle FOR et qui receptionne un article par tour de boucle #}
+
+        {% for newArticle in  articles %}
 
         <div class="col-md-3 border border-secondary rounded mr-5 mb-5 text-center">
-            <img src="https://picsum.photos/250" alt="" class=""><hr>
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="{{ path('blog_show') }}" role="button">View details &raquo;</a></p>
+            <img src="{{ newArticle.image }} " alt="{{ newArticle.title }} " class=""><hr>
+            <h2>{{ newArticle.title }}</h2>
+            <p>{{ newArticle.content|raw }}</p><hr>
+            <p>Posté le {{ newArticle.createdAt|date('d/m/Y') }} à {{ newArticle.createdAt|date('H:i:s') }}</p><hr>
+            <p><a class="btn btn-info" href="{{ path('blog_show', {'id': newArticle.id }) }}" role="button">En voir + &raquo;</a></p><hr>
+            {# On ajoute un 2ème paramètre à la méthode path() de TWIG afin de transmettre l'id de l'article dans l'URL #}  
         </div>
 
-        <div class="col-md-3 border border-secondary rounded mr-5 mb-5 text-center">
-            <img src="https://picsum.photos/250" alt="" class=""><hr>
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="{{ path('blog_show') }}" role="button">View details &raquo;</a></p>
-        </div>
+        {# sans le filtre TWIG raw, mes balises <p></p> s'ffichent, nous utilisons ce filtre pour l'affichage brut #}
+        {# date() : filtre twig qui permet d'afficher la date et l'heure #}
+        {# newArticle.createdAt : la BDD renvoie un objet DateTime, il n'st pas possible de convertir un objet en une chaine de caracteres #}
 
-        <div class="col-md-3 border border-secondary rounded mr-5 mb-5 text-center">
-            <img src="https://picsum.photos/250" alt="" class=""><hr>
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="{{ path('blog_show') }}" role="button">View details &raquo;</a></p>
-        </div>
-
+        
+        {% endfor %}
     </div>
 
 {% endblock %}
