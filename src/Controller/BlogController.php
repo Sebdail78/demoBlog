@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -139,11 +140,16 @@ class BlogController extends AbstractController
         //         ->setContent("Contenu de l'article à la con");
 
         // on construit le formulaire :
-        $form = $this ->createFormBuilder($article)
-                      ->add('title')
-                      ->add('content')
-                      ->add('image')
-                      ->getForm();
+        // $form = $this ->createFormBuilder($article)
+        //               ->add('title')
+        //               ->add('content')
+        //               ->add('image')
+        //               ->getForm();
+
+
+            // Permet de faire appel à la classe ArticleType permettant de generer le formulaire d'ajout/modification
+            // On précise que ce formulaire permettra de remplir un objet issu de la class Article $article 
+        $form = $this->createForm(ArticleType::class, $article);
 
         $form->handleRequest($request);    
         
@@ -165,7 +171,9 @@ class BlogController extends AbstractController
         }
         
         return $this->render('blog/create.html.twig', [
-            'formArticle' => $form->createView()
+            'formArticle' => $form->createView(),
+            'editMode' => $article->getId() !==null  // on teste si l'article possède un ID ou non, si l'article possède un ID c'est une modification
+            // si il n'a pas d'ID c'est une insertion
         ]);
     }
 
