@@ -7,8 +7,10 @@ use Faker\Factory;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\Category;
-use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\FixtureInterface;
+
 
 class ArticleFixtures extends Fixture
 {
